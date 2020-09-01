@@ -343,7 +343,8 @@ function regCleaner() {
                                     guarantorAddress: gAddress
                                 },
                                 status: 'Pending',
-                                role: "cleaner"
+                                role: "cleaner",
+                                available: false
                             }).then(function () {
                                 document.getElementById('profileImagePreview').src = "";
                                 cleanerForm.reset();
