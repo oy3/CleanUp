@@ -1,3 +1,15 @@
+//Add Admin cloud functions
+const adminForm = document.querySelector('.admin-actions');
+adminForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const adminEmail = document.querySelector('#admin-email').value;
+    const addAdminRole = functions.httpsCallable('addAdminRole');
+
+    addAdminRole({ email: adminEmail }).then(result => {
+        console.log(result);
+    });
+})
+
 // Listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
@@ -9,7 +21,14 @@ auth.onAuthStateChanged(user => {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
+
         console.log('user logged in: ', user);
+
+        // user.getIdTokenResult().then(idTokenResult => {
+        //     user.admim = idTokenResult.claims.admim;
+        //     checkRole()
+        // });
+
         setupUi(user);
         setupProfileUi(user);
         // setupCleanerProfileUi(user);
@@ -58,7 +77,7 @@ registerform?.addEventListener('submit', (e) => {
             userId: cred.user.uid
         });
     }).then(() => {
-       
+
         var user = firebase.auth().currentUser;
         user.sendEmailVerification().then(function () {
             $('.alert-danger').addClass('hidden');
@@ -256,14 +275,13 @@ contactForm?.addEventListener('submit', (e) => {
 
 
 function checkRole() {
-
-
     // Listen for auth status changes
     auth.onAuthStateChanged(user => {
         if (user) {
             // User is signed in.
             var uid = user.uid;
             console.log("Current user:", uid);
+
 
             var docRef = db.collection("users").doc(uid);
             docRef.get().then(function (doc) {
@@ -275,7 +293,10 @@ function checkRole() {
                         window.location.replace("dashboard.html");
                     } else if (role == "cleaner") {
                         window.location.replace("cleaner/dashboard.html");
-                    } else {
+                    } else if (role == "admin") {
+                        window.location.replace("admin/dashboard.html");
+                    }
+                    else {
                         console.log("Unknow user role");
                     }
                 } else {
@@ -284,6 +305,9 @@ function checkRole() {
             }).catch(function (error) {
                 console.log("Error getting role:", error);
             });
+
+
+
         }
     });
 }

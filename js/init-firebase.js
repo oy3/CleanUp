@@ -16,6 +16,6 @@ var defaultProject = firebase.initializeApp(firebaseConfig);
 var auth = defaultProject.auth();
 var db = defaultProject.firestore();
 var storage = defaultProject.storage();
-
+var functions = defaultProject.functions();
 // Update firestore settings
 db.settings({});

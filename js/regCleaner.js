@@ -313,7 +313,7 @@ function regCleaner() {
                         auth.createUserWithEmailAndPassword(cEmail, cPassword).then(cred => {
                             db.collection('users').doc(cred.user.uid).set({
                                 profileImage: url,
-                                name: cFullname,
+                                fullname: cFullname,
                                 email: cEmail,
                                 phoneNumber: cPhone,
                                 gender: cGender,

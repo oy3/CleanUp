@@ -25,6 +25,10 @@ const setupUi = (user) => {
         // db.collection('users').doc(user.uid).get().then(doc => {
         //    renderUserData(doc);
         // })
+        
+        // if (user.admim) {
+        //     window.location.replace("admin/dashboard.html");
+        // } else {}
 
 
         // toggle UI elements
@@ -233,14 +237,14 @@ function getBriefTableData() {
 
                 let cleanerName = "Not assigned";
                 let cleanerPhone = "None";
-                var cleaner = change.doc.data().cleanerId;
-                if (cleaner !== null && cleaner !== '') {
-                    db.collection('users').doc(cleaner).onSnapshot(function (doc) {
-                        // console.log("cleaner details = ", doc.data());
-                        cleanerName = doc.data().name;
-                        cleanerPhone = doc.data().phoneNumber;
-                    });
-                }
+                // var cleaner = change.doc.data().cleanerId;
+                // if (cleaner !== null && cleaner !== '') {
+                //     db.collection('users').doc(cleaner).onSnapshot(function (doc) {
+                //         // console.log("cleaner details = ", doc.data());
+                //         cleanerName = doc.data().name;
+                //         cleanerPhone = doc.data().phoneNumber;
+                //     });
+                // }
 
                 dataSet.push([
                     uid,
@@ -299,14 +303,14 @@ function getTableData() {
 
                 let cleanerName = "Not assigned";
                 let cleanerPhone = "None";
-                var cleaner = change.doc.data().cleanerId;
-                if (cleaner !== null && cleaner !== '') {
-                    db.collection('users').doc(cleaner).onSnapshot(function (doc) {
-                        cleanerName = doc.data().name;
-                        cleanerPhone = doc.data().phoneNumber;
-                        console.log("cleaner details = ", cleanerName + ', ' + cleanerPhone);
-                    });
-                }
+                // var cleaner = change.doc.data().cleanerId;
+                // if (cleaner !== null || cleaner !== '' || cleaner !== undefined) {
+                //     db.collection('users').doc(cleaner).onSnapshot(function (doc) {
+                //         cleanerName = doc.data().name;
+                //         cleanerPhone = doc.data().phoneNumber;
+                //         console.log("cleaner details = ", cleanerName + ', ' + cleanerPhone);
+                //     });
+                // }
 
                 var date = change.doc.data().bookedTime.seconds;
                 var formatDate = timeConverter(date);
