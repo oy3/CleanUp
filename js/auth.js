@@ -58,8 +58,14 @@ registerform?.addEventListener('submit', (e) => {
             userId: cred.user.uid
         });
     }).then(() => {
-        $('.alert-danger').addClass('hidden');
-        $('.alert-success').text("Registered successfully").removeClass('hidden');
+       
+        var user = firebase.auth().currentUser;
+        user.sendEmailVerification().then(function () {
+            $('.alert-danger').addClass('hidden');
+            $('.alert-success').text("Registered successfully").removeClass('hidden');
+        }).catch(function (error) {
+            // An error happened.
+        });
         registerform.reset();
     }).catch(function (error) {
         // Handle Errors here.
