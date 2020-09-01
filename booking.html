@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanUp</title>
+
+    <link rel="icon" type="image/png" href="images/icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/tooplate-style.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet"
+        type="text/css" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="js/all.js"></script>
+
+
+
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/init.js"></script> -->
+
+	<script src="js/init-firebase.js"></script>
+
+    <script>
+        window.onload = function () {
+            //run auth code here
+            auth.onAuthStateChanged(user => {
+                console.log(user);
+                if (user) {
+                    window.onload = console.log('Booking user: ', user);
+                    setupBookingUi(user);
+                } else {
+                    window.location.replace("login.html");
+                }
+            });
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+
+                <!-- lOGO TEXT HERE -->
+                <a href="index.html" class="navbar-brand">CleanUp</a>
+            </div>
+
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html" class="moothScroll">Home</a></li>
+                    <li><a href="dashboard.html" class="smoothScroll">Dashboard</a></li>
+                    <li><a href="booking.html" class="moothScroll">Book Now</a></li>
+                    <li><a href="profile.html" class="smoothScroll">My profile</a></li>
+                    <li><a href="history.html" class="smoothScroll">Cleaning History</a></li>
+                    <li><a id="logoutBtn" class="bg-primary" style="color: white;">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active">
+                <p class="fa fa-user"></p><br>Your bookings
+            </li>
+            <li>
+                <p class="fa fa-calendar"></p><br>When you want it
+            </li>
+            <li>
+                <p class="fa fa-phone"></p><br>Contact details
+            </li>
+            <li>
+                <p class="fa fa-shopping-cart"></p><br>Confirm booking
+            </li>
+        </ul>
+
+        <div class="container">
+            <div class="row">
+                <!-- Left view -->
+                <div class="col-md-4"
+                    style="box-sizing: border-box; box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); padding: 20px 30px;">
+                    <h4><span>Your booking</span></h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div>
+                                <h6>Cleaning hours</h6>
+                            </div>
+                            <span id="hours">0 hour</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Total (NGN)</span>
+                            <strong>&#8358;<span id="amount">0</span></strong>
+                        </li>
+                    </ul>
+
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Promo code">
+                            <div class="input-group">
+                                <button type="submit" class="btn btn-primary">Redeem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right view -->
+                <div class="col-md-8">
+                    <form id="booking-form" name="booking-form">
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <h4>What you want</h4>
+                            <div class="form-group">
+                                <label for="bedroom">Number of Rooms</label>
+                                <input type="number" class="form-control required" id="bedroom"
+                                    placeholder="Example: 1,2,3..." onchange="calculation()">
+                            </div>
+                            <div class="form-group">
+                                <label for="bathroom">Number of Bathrooms</label>
+                                <input type="number" class="form-control required" id="bathroom"
+                                    placeholder="Example: 1,2,3..." onchange="calculation()">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">What type of cleaning service do you want?</label>
+                                <select class="form-control required" id="service" name="service"
+                                    onchange="calculation()">
+                                    <option value=""></option>
+                                    <option value="Light Clean">Light Clean</option>
+                                    <option value="Deep Clean">Deep Clean</option>
+                                    <option value="Moving In & Out">Moving In & Out</option>
+                                    <option value="Post Construction">Post Construction</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product">Cleaning Products</label>
+                                <div class="row">
+                                    <div class="col-md-6 form-check">
+                                        <input class="form-check-input radio-btn" type="radio" id="option-yes"
+                                            value="yes" name="product" onchange="calculation()">
+                                        <label class="form-check-label" for="option-yes">Provide cleaning
+                                            products
+                                            (N2,000)</label>
+                                    </div>
+                                    <div class="col-md-6 form-check">
+                                        <input class="form-check-input radio-btn" type="radio" id="option-no" value="no"
+                                            name="product" onchange="calculation()">
+                                        <label class="form-check-label" for="option-no">I'll use my own cleaning
+                                            products</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="next" class="next btn btn-primary btn-lg" value="Next" />
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>When should we come clean</h4>
+                            <div class="form-group">
+                                <label for="frequent">How frequent?</label>
+                                <select class="form-control required" id="frequent" name="frequent">
+                                    <option value=""></option>
+                                    <option value="One-Time">One-Time</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Every 2 Weeks">Every 2 Weeks</option>
+                                    <option value="Every 3 Weeks">Every 3 Weeks</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Bimonthly">Bimonthly</option>
+                                </select>
+                            </div>
+                            <h4>When should we come</h4>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label for="select-date">Select Day</label>
+                                    <div class='input-group date'>
+                                        <!-- <span id=""></span> -->
+                                        <input type="text" id="select-date" name="select-date"
+                                            class="form-control required" readonly />
+                                        <span id='datepicker' class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-5">
+                                    <label for="select-time">Select Time</label>
+                                    <div class='input-group date'>
+                                        <span id="time-format"></span>
+                                        <input type='time' id="select-time" name="select-time"
+                                            class="form-control required" onchange="onTimeChange(this)"/>
+                                        <span id='timepicker' class="input-group-addon">
+                                            <span class="fa fa-clock-o"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="previous" class="previous btn btn-warning btn-lg"
+                                value="Previous" />
+                            <input type="button" name="next" class="next btn btn-primary btn-lg" value="Next" />
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Where are we coming to clean?</h4>
+                            <div class="form-group">
+                                <label for="user-name">Your Full Name</label>
+                                <input type="text" class="form-control required" id="user-name"
+                                    placeholder="Example: John Doe" />
+                            </div>
+                            <div class="form-group">
+                                <label for="user-email">Your Email</label>
+                                <input type="email" class="form-control required" id="useremail"
+                                    placeholder="Example: Johndoe123@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-phone">Your Phone Number</label>
+                                <input type="number" class="form-control required" id="userphone"
+                                    placeholder="Example: (+234) 123 456 7890">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-alt">Alternate Phone Number <span
+                                        class="text-muted">(Optional)</span></label>
+                                <input type="number" class="form-control" id="useralt"
+                                    placeholder="Example: (+234) 123 456 7890">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-address">Your Address</label>
+                                <textarea type="text" class="form-control required" id="user-address"
+                                    placeholder="Example: 1234 Main Street"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="user-state">State</label>
+                                        <input class="form-control" type="text" id="userstate" readonly>
+
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <label for="user-country">Country</label>
+                                        <input class="form-control" type="text" id="usercountry" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-instruction">Special Notes or Instructions <span
+                                        class="text-muted">(Optional)</span></label>
+                                <textarea type="text" class="form-control" id="userinstruction"
+                                    placeholder="Some important information that you need us to know, such as, the kind of Pet you have"></textarea>
+                            </div>
+                            <input type="button" name="previous" class="previous btn btn-warning btn-lg"
+                                value="Previous" />
+                            <input type="button" name="next" class="next btn btn-primary btn-lg" value="Next"
+                                onclick="showMessage()" />
+                        </fieldset>
+
+                        <fieldset>
+                            <h4>Confirm order?</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Customer Name</th>
+                                            <td id="cname"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Location</th>
+                                            <td id="clocation"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Address</th>
+                                            <td id="caddress"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Phone Number</th>
+                                            <td id="cphone"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td id="cemail"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Date and Time</th>
+                                            <td id="cdate"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cleaning Duration</th>
+                                            <td id="chours"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="button" name="previous" class="previous btn btn-primary btn-lg"
+                                value="Previous" />
+                            <input type="button" name="submit" id="finalAmount" class="submit btn btn-success btn-lg">
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/profile.js"></script>
+
+</body>
+
+</html>

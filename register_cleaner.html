@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>CleanUp</title>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="team" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="icon" type="image/png" href="images/icon.png">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="css/tooplate-style.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="primary-bg">
+
+	<!-- PRE LOADER -->
+	<section class="preloader">
+		<div class="spinner">
+			<span class="spinner-rotate"></span>
+		</div>
+	</section>
+
+
+
+	<section>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+				<form id="register-cleaner-form" style="text-align: center">
+
+					<h2 class="fs-title"><a href="index.html">CleanUp</a></h2>
+					<h3 class="fs-subtitle">CLEANER REGISTRATION PANEL</h3>
+
+					<!-- progressbar -->
+					<ul id="progressbar">
+						<li class="active">Personal Details</li>
+						<li>Guarantor's Details</li>
+						<li>Payment details</li>
+					</ul>
+
+					<!-- fieldsets -->
+					<fieldset>
+						<h2 class="fs-title">Personal Details</h2>
+						<h3 class="fs-subtitle">Tell us something more about you</h3>
+
+						<div class="form-group">
+							<img id="profileImagePreview" src="images/placeholder-avatar.jpg"
+								class="img-circle avatar-pic z-depth-1-half ">
+
+							<div style="margin-top: 10px;">
+								<label class="btn btn-primary">
+									Add Photo <input class="required hide" type="file" id="inputProfileImage"
+										onchange="readURL(this)">
+								</label>
+							</div>
+						</div>
+
+						<input type="text" class="form-control required" id="inputfullName"
+							placeholder="Enter Full Name">
+						<input type="email" class="form-control required" id="inputEmail"
+							placeholder="Enter Email Address">
+						<input type="tel" class="form-control required" id="inputPhoneNumber"
+							placeholder="Enter Phone Number" pattern="[0-9]{11}">
+						<select class="form-control required" id="gender" name="gender">
+							<option style="color: #b4b4b4;" value="">Select Gender...</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+						<label for="DOB">Date of Birth</label>
+						<input type="date" class="form-control required" id="inputDob" placeholder="DOB">
+						<textarea class="form-control required" rows="3" id="inputCleanerAddress"
+							placeholder="Enter House Address"></textarea>
+						<input type="text" class="form-control required" id="inputState" placeholder="Enter State">
+						<input type="text" class="form-control required" id="inputCountry" placeholder="Enter Country">
+						<input type="text" class="form-control required" id="inputLanguage"
+							placeholder="Enter Primary Language">
+						<input type="text" class="form-control" id="inputLanguage2"
+							placeholder="Enter Other Languages (optional)">
+						<textarea class="form-control" rows="2" id="inputAddServices"
+							placeholder="Enter additional services (optional)"></textarea>
+						<input type="password" class="form-control required" id="inputPassword"
+							placeholder="Enter password">
+						<input type="password" class="form-control required" id="inputConfirmPassword"
+							placeholder="Confirm password">
+						<select class="form-control required" id="inputID">
+							<option disabled selected>Select Form of Identification</option>
+							<option>Driver's license</option>
+							<option>International passport</option>
+							<option>National ID</option>
+							<option>Voters card</option>
+						</select>
+						<input type='file' class="required" accept="image/*" id="inputIDfile">
+						<button type="button" name="next" class="next btn btn-primary">Next</button>
+						<p id="error-text"></p>
+
+						<a href="login.html">
+							<p>Already have an account? Login</p>
+						</a>
+					</fieldset>
+
+					<fieldset>
+						<h2 class="fs-title">Guarantor's Details</h2>
+						<h3 class="fs-subtitle">Tell us something more about you</h3>
+						<input type="text" class="form-control required" id="inputGName"
+							placeholder="First Name, Last Name">
+						<input type="email" class="form-control required" id="InputGEmail" placeholder="Enter email">
+						<input type="tel" class="form-control required" id="InputGPhone"
+							placeholder="Enter phone number">
+						<textarea class="form-control required" rows="3" id="inputGAddress"
+							placeholder="Enter house address"></textarea>
+						<button type="button" name="previous" class="previous btn btn-warning btn-lg">Previous</button>
+						<button type="button" name="next" class="next btn btn-primary btn-lg">Next</button>
+						<p id="error-text"></p>
+
+						<br><br><a href="login.html">
+							<p>Already have an account? Login</p>
+						</a>
+					</fieldset>
+
+					<fieldset>
+						<!-- Error & Success Message show here -->
+						<div class="alert alert-dismissible invisible" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+								<span aria-hidden="true">&times;</span></button>
+						</div>
+
+
+						<h2 class="fs-title">Payment details</h2>
+						<h3 class="fs-subtitle">(Must be the same name as applicant's name)</h3>
+						<select class="form-control required" id="inputCBank">
+							<option disabled selected>Select bank</option>
+							<option>ACCESS BANK</option>
+							<option>CITIBANK</option>
+							<option>DIAMOND BANK</option>
+							<option>ECOBANK NIGERIA </option>
+							<option>FIDELITY BANK NIGERIA</option>
+							<option>FIRST BANK OF NIGERIA</option>
+							<option>FIRST CITY MONUMENT BANK </option>
+							<option>GUARANTY TRUST BANK</option>
+							<option>HERITAGE BANK PLC</option>
+							<option>KEYSTONE BANK LIMITED </option>
+							<option>PROVIDUS BANK PLC </option>
+							<option>SKYE BANK </option>
+							<option>STANBIC IBTC BANK NIGERIA LIMITED</option>
+							<option>STANDARD CHARTERED BANK</option>
+							<option>STERLING BANK </option>
+							<option>SUNTRUST BANK NIGERIA LIMITED </option>
+							<option>UNION BANK OF NIGERIA</option>
+							<option>UNITED BANK FOR AFRICA</option>
+							<option>UNITY BANK </option>
+							<option>WEMA BANK</option>
+							<option>ZENITH BANK</option>
+						</select>
+						<input type="number" class="form-control required" id="inputCAccNum"
+							placeholder="Enter Account Number">
+						<input type="text" class="form-control required" id="inputCAccName"
+							placeholder="Enter account name">
+						<button type="button" name="previous" class="previous btn btn-primary btn-lg">Previous</button>
+						<button type="button" name="submit" id="register-cleaner" class="submit btn btn-danger btn-lg">
+							<span id="spinner" class="spinner-border spinner-border-sm hide" role="status"
+								aria-hidden="true"></span> Register
+						</button>
+						<p id="error-text"></p>
+
+						<br><br><a href="login.html">
+							<p>Already have an account? Login</p>
+						</a>
+					</fieldset>
+
+
+
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<script language="javascript" type="text/javascript">
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#profileImg')
+						.attr('src', e.target.result)
+						.width(150)
+						.height(150);
+				};
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/init.js"></script> -->
+
+	<script src="js/init-firebase.js"></script>
+
+	<!-- SCRIPTS -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/smoothscroll.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/jquery.easing.min.js"></script>
+
+	<script src="js/regCleaner.js"></script>
+
+
+
+
+</body>
+
+</html>
