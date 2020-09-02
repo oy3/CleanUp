@@ -25,7 +25,7 @@ const setupUi = (user) => {
         // db.collection('users').doc(user.uid).get().then(doc => {
         //    renderUserData(doc);
         // })
-        
+
         // if (user.admim) {
         //     window.location.replace("admin/dashboard.html");
         // } else {}
@@ -564,3 +564,24 @@ function cleanerHistoryTableData() {
         }
     );
 }
+
+function download(file, text) {
+
+    //creating an invisible element 
+    var element = document.createElement('a');
+    element.setAttribute('href',
+        'data:text/plain;charset=utf-8, '
+        + encodeURIComponent(text));
+    element.setAttribute('download', file);
+
+    // Above code is equivalent to 
+    // <a href="path of file" download="file name"> 
+
+    document.body.appendChild(element);
+
+    //onClick property 
+    element.click();
+
+    document.body.removeChild(element);
+}
+
