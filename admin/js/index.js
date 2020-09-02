@@ -29,19 +29,32 @@ function getUserData() {
     });
 
     bookingRef.onSnapshot(snapshot => {
+        var dataSet = new Array();
+
         let changes = snapshot.docChanges();
         changes.forEach(change => {
             if (change.type == 'added') {
-                var amount = change.doc.data().amount;
-
-                document.getElementById("totalEarnings").textContent = "₦" + amount;
-
+                var amount = parseInt(change.doc.data().amount);
+                dataSet.push([
+                    amount]);
             }
         });
+
+        // const sum = dataSet
+        //     .map(v => v[0])
+        //     .reduce((sum, current) => sum + current, 0);
+
+        var sum = 0;
+        for (var i = 0, len = dataSet.length; i < len; i++) {
+            sum += dataSet[i][0];
+        }
+
+        document.getElementById("totalEarnings").textContent = "₦" + sum.toLocaleString();
 
     });
 
 }
+
 
 function getUserTableData() {
     var dataSet = new Array();
@@ -64,7 +77,7 @@ function getUserTableData() {
                     change.doc.data().fullname,
                     change.doc.data().email,
                     change.doc.data().role,
-                    change.doc.data().timestamp.seconds,
+                    change.doc.data().timestamp.toDate(),
                     editBtn,
                     delBtn]);
             }
@@ -81,7 +94,7 @@ function getUserTableData() {
             ordering: true,
             destroy: true,
             // pageLength: 5,
-            order: [1, "desc"],
+            order: [1, "asc"],
             columns: [
                 { title: '#' },
                 { title: 'Name' },
@@ -115,12 +128,12 @@ function getBookingTableData() {
 
                 dataSet.push([
                     "",
-                    change.doc.data().bookedTime.seconds,
+                    change.doc.data().bookedTime.toDate(),
                     change.doc.data().customerName,
                     change.doc.data().customerAddress,
                     change.doc.data().status,
                     change.doc.data().typeOfService,
-                    "₦" + change.doc.data().amount,
+                    "₦" + change.doc.data().amount.toLocaleString(),
                     editBtn]);
             }
         })
