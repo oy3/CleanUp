@@ -11,11 +11,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-#usersTable, #bookingsTable {
+#usersTable, #bookingsTable, #messagesTable {
     counter-reset: Serial;
 }
 
-#usersTable tr td:first-child:before, #bookingsTable tr td:first-child:before {
+#usersTable tr td:first-child:before, #bookingsTable tr td:first-child:before, #messagesTable tr td:first-child:before {
     counter-increment: Serial;
     content: counter(Serial);
 }

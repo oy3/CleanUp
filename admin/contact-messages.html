@@ -63,38 +63,36 @@
 
             <!-- Nav Item - Users Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="users.html" aria-expanded="true">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Registered Users:</h6>
-                        <a class="collapse-item" href="users.html">Clients</a>
-                        <a class="collapse-item" href="#">Cleaners</a>
-                    </div>
-                </div>
+                <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Registered Users:</h6>
+                            <a class="collapse-item" href="users.html">Clients</a>
+                            <a class="collapse-item" href="#">Cleaners</a>
+                        </div>
+                    </div> -->
             </li>
 
             <!-- Nav Item - Jobs Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="bookings.html" aria-expanded="true">
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Bookings</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Cleaning Jobs:</h6>
-                        <a class="collapse-item" href="#">All</a>
-                        <a class="collapse-item" href="#">Pending</a>
-                        <a class="collapse-item" href="#">Scheduled</a>
-                        <a class="collapse-item" href="#">Completed</a>
-                        <a class="collapse-item" href="#">Cancelled</a>
-                    </div>
-                </div>
+                <!-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Cleaning Jobs:</h6>
+                            <a class="collapse-item" href="bookings.html">All</a>
+                            <a class="collapse-item" href="#">Pending</a>
+                            <a class="collapse-item" href="#">Scheduled</a>
+                            <a class="collapse-item" href="#">Completed</a>
+                            <a class="collapse-item" href="#">Cancelled</a>
+                        </div>
+                    </div> -->
             </li>
 
             <!-- Divider -->
@@ -107,7 +105,7 @@
 
             <!-- Nav Item - Service Charge -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="service-charge.html">
                     <i class="fas fa-fw fa-credit-card"></i>
                     <span>Service Charge</span></a>
             </li>
@@ -277,14 +275,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Temitope Oyeyinka</span>
-                                <img class="img-profile rounded-circle"
-                                    src="https://scontent-los2-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/89823915_198663198081802_477069911391764675_n.jpg?_nc_ht=scontent-los2-1.cdninstagram.com&_nc_cat=110&_nc_ohc=5p6plJPMIzwAX8UF16I&oh=012b1447ee1d9576b1fc782bad561b1f&oe=5F5191F2">
+                                <span id="adminName" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <img class="img-profile rounded-circle" src="../images/placeholder-avatar.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -326,7 +323,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
 
-                                    <table class="table " width="100%" cellspacing="0">
+                                    <table id="messagesTable" class="table " width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -337,41 +334,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Oyeyinka Temitope</td>
-                                                <td>I'm having troubles logging into my account.</td>
-                                                <td><button class="btn btn-sm btn-info">View</button></td>
-                                                <td><button class="btn btn-sm btn-success">Reply</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Oseiwe Ehiremhen</td>
-                                                <td>I just heare to say how much i enjoy and am inspired by your newsletter content.</td>
-                                                <td><button class="btn btn-sm btn-info">View</button></td>
-                                                <td><button class="btn btn-sm btn-success">Reply</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Victor Dasilva</td>
-                                                <td>When does the 20% discount start?</td>
-                                                <td><button class="btn btn-sm btn-info">View</button></td>
-                                                <td><button class="btn btn-sm btn-success">Reply</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Oyeyinka Temitope</td>
-                                                <td>I've finally logged into my account, but my profile details isn't showing.</td>
-                                                <td><button class="btn btn-sm btn-info">View</button></td>
-                                                <td><button class="btn btn-sm btn-success">Reply</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Great Momoh</td>
-                                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt at augue quis volutpat. Maecenas pretium eu urna at tincidunt. Donec non mi sit amet ligula imperdiet sagittis et vel dui. Nullam eget auctor erat, ac porttitor lectus. Nulla at lacus laoreet, ullamcorper leo sit amet, dignissim nunc. Duis fermentum id ante egestas finibus. Donec accumsan fermentum mauris at efficitur. Maecenas fermentum congue mauris vitae eleifend. Proin accumsan sem quis fermentum dignissim. Vivamus finibus nibh in pharetra ullamcorper. Nam at dolor iaculis, lacinia dui in, sagittis metus. Suspendisse vitae arcu lectus. Fusce nibh velit, pharetra id hendrerit et, convallis sed purus.</td>
-                                                <td><button class="btn btn-sm btn-info">View</button></td>
-                                                <td><button class="btn btn-sm btn-success">Reply</button></td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -437,11 +399,71 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" id="logout">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Edit Profile</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- <div class="col-xl-4 col-lg-5">
+                            <img id="adminImg" src="../images/placeholder-avatar.jpg" style="width: 150px; height: 150px;">
+                            <button type="button" class="btn btn-danger center-block" style="width: 90%;">Change
+                                <i class="fa fa-camera"></i></button>
+                        </div> -->
+                        <div class="col-xl-8 col-lg-7">
+                            <input type="text" class="form-control" id="adminFullname" placeholder="Enter Name"><br>
+                            <input type="email" class="form-control" id="adminEmail" placeholder="Enter Email"><br>
+                            <button type="button" class="btn btn-primary  pull-right">Reset password</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-functions.js"></script>
+
+    <script src="../js/init-firebase.js"></script>
+
+    <script>
+        window.onload = function () {
+            //run auth code here
+            auth.onAuthStateChanged(user => {
+                console.log(user);
+                if (user) {
+                    window.onload = console.log('Admin logged in: ', user);
+                    getUserData();
+                    getMessagesTableData();
+                } else {
+                    window.location.replace("login.html");
+                    console.log('user logged out');
+                }
+            });
+        }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -449,6 +471,8 @@
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="js/index.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>

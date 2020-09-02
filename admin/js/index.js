@@ -167,6 +167,53 @@ function getBookingTableData() {
     });
 }
 
+function getMessagesTableData() {
+    var dataSet = new Array();
+    var userRef = db.collection('contact-messages');
+
+    userRef.onSnapshot(snapshot => {
+        let changes = snapshot.docChanges();
+        changes.forEach(change => {
+            if (change.type == 'added') {
+
+                var viewBtn = '<button class="btn btn-sm btn-info">View</button>';
+                var replyBtn = '<button class="btn btn-sm btn-success">Reply</button>';
+
+
+                dataSet.push([
+                    "",
+                    change.doc.data().fullname,
+                    change.doc.data().message,
+                    viewBtn,
+                    replyBtn]);
+            }
+        })
+
+        console.log("data", dataSet);
+
+        const dataTable = $('#messagesTable').DataTable({
+            data: dataSet,
+            paging: false,
+            pageLength: 5,
+            searching: false,
+            info: false,
+            ordering: true,
+            destroy: true,
+            order: [1, "asc"],
+            columns: [
+                { title: '#' },
+                { title: 'Sender Name' },
+                { title: 'Messages' },
+                { title: '' },
+                { title: '' }
+            ]
+        });
+        dataTable.clear();
+        dataTable.rows.add(dataSet);
+        dataTable.draw();
+    });
+}
+
 //Log out admin
 const logout = document.querySelector('#logout');
 logout?.addEventListener('click', (e) => {
